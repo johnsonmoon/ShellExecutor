@@ -6,7 +6,17 @@ An easy tool for executing shell command, with sub-process output message receiv
 
 ## Usage
 
-Example like: 
+### Functions
+- ShellExecutor#execute  
+
+parameters    | param-type                 | necessary | description 
+------------- | -------------------------- | --------- | ----------- 
+command       | String                     | true      | shell command
+directory     | String                     | false     | working directory where the command would be executed
+timeout       | Long                       | false     | the max time to wait, time unit: ms. null means wait util the command execution was done
+communicators | ShellExecutor.Communicator | false     | communication objects to receive message line from the process, with other operations as well
+
+### Example 
 ```
 @Test
 public void simpleTest() {
