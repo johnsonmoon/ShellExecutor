@@ -48,7 +48,22 @@ public class ShellExecutorTest {
         try {
             int exitValue = ShellExecutor.execute(
                     "./test.sh",
-                    System.getProperty("user.dir")+"/scripts",
+                    System.getProperty("user.dir") + "/scripts",
+                    null,
+                    (message, process) -> System.out.println(message)
+            );
+            System.out.println("exitValue: " + exitValue);
+        } catch (ShellExecutor.CommandTimeoutException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void complexCommandTest() {
+        try {
+            int exitValue = ShellExecutor.execute(
+                    "ps -ef | grep java | grep -v grep",
+                    System.getProperty("user.dir"),
                     null,
                     (message, process) -> System.out.println(message)
             );

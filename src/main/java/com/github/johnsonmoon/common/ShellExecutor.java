@@ -30,7 +30,8 @@ public class ShellExecutor {
      * @return the process exit value
      */
     public static int execute(String command, String directory, Long timeout, final Communicator... communicators) throws CommandTimeoutException {
-        final ProcessBuilder processBuilder = new ProcessBuilder(command);
+        String[] commands = new String[]{"sh", "-c", command};
+        final ProcessBuilder processBuilder = new ProcessBuilder(commands);
         if (directory != null) {
             File workDir = new File(directory);
             if (workDir.exists() && workDir.isDirectory()) {
